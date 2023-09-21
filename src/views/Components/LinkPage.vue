@@ -73,7 +73,7 @@
         </table>
       </template>
       <template v-slot:code>
-        <prism-component />
+        <prism-component :code="code" />
       </template>
     </ShowcaseComponent>
   </div>
@@ -86,6 +86,7 @@ import SelectComponent from "@/components/Controls/SelectComponent";
 import InputComponent from "@/components/Controls/InputComponent";
 import ToggleComponent from "@/components/Controls/ToggleComponent";
 import PrismComponent from "@/components/PrismComponent";
+// import * as LinkComponentMarkdown from "@/assets/ComponentMarkdown/LinkComponentMarkdown";
 
 export default {
   components: {
@@ -105,6 +106,7 @@ export default {
       linkVariant: "",
       href: "",
       variantOptions: ["info", "success", "warning", "danger"],
+      code: "<template><div>Some code</div></template>",
     };
   },
   methods: {
