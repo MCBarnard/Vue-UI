@@ -11,6 +11,9 @@
       <div class="showcase__bottom__controls">
         <slot name="controls"></slot>
       </div>
+      <div class="showcase__bottom__code">
+        <slot name="code"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -69,6 +72,12 @@ export default {
     }
 
     &__controls {
+      position: relative;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    &__code {
       position: relative;
       max-width: 600px;
       margin: auto;

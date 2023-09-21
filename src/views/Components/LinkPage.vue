@@ -72,6 +72,9 @@
           </tr>
         </table>
       </template>
+      <template v-slot:code>
+        <prism-component />
+      </template>
     </ShowcaseComponent>
   </div>
 </template>
@@ -82,6 +85,7 @@ import LinkComponent from "@/components/Vue-UI/LinkComponent";
 import SelectComponent from "@/components/Controls/SelectComponent";
 import InputComponent from "@/components/Controls/InputComponent";
 import ToggleComponent from "@/components/Controls/ToggleComponent";
+import PrismComponent from "@/components/PrismComponent";
 
 export default {
   components: {
@@ -90,6 +94,7 @@ export default {
     SelectComponent,
     InputComponent,
     ToggleComponent,
+    PrismComponent,
   },
   data() {
     return {
