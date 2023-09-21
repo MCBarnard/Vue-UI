@@ -7,6 +7,7 @@
     </div>
     <div class="showcase__bottom">
       <p>Props</p>
+      <p class="subtext">Live playground for you to play around in</p>
       <div class="showcase__bottom__controls">
         <slot name="controls"></slot>
       </div>
@@ -21,7 +22,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 .showcase {
   color: #000;
@@ -57,6 +58,14 @@ export default {
       margin: 0;
       max-width: 600px;
       margin: auto;
+
+      &.subtext {
+        font-family: "Montserrat";
+        font-size: 12px;
+        max-width: 600px;
+        margin: 0 auto 16px;
+        color: grey;
+      }
     }
 
     &__controls {

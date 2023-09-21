@@ -127,6 +127,10 @@ export default {
       if (item.target.value) this.linkTitle = item.target.value;
     },
     handleToggledChange() {
+      console.log("=======");
+      console.log(this.targetToggle);
+      console.log(!this.targetToggle);
+      console.log("=======");
       this.targetToggle = !this.targetToggle;
     },
   },

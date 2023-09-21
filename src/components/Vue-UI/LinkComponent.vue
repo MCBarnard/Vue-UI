@@ -2,14 +2,14 @@
   <span :class="[variant]">
     <router-link
       class="simple-link"
-      v-if="to && !openOnNewPage"
+      v-if="to && !computedOpenOnNewPage"
       :to="{ name: to }"
     >
       {{ text }}
     </router-link>
     <router-link
       class="simple-link"
-      v-else-if="to && openOnNewPage"
+      v-else-if="to && computedOpenOnNewPage"
       :to="{ name: to }"
       target="_blank"
     >
@@ -17,7 +17,7 @@
     </router-link>
 
     <a
-      v-else-if="href && !to && !openOnNewPage"
+      v-else-if="href && !to && !computedOpenOnNewPage"
       :class="['simple-link']"
       :href="href"
       :title="title"
@@ -25,7 +25,7 @@
       {{ text }}
     </a>
     <a
-      v-else-if="href && !to && openOnNewPage"
+      v-else-if="href && !to && computedOpenOnNewPage"
       :class="['simple-link']"
       :href="href"
       :title="title"
@@ -47,6 +47,11 @@ export default {
     title: String, // "", "Something"
     openOnNewPage: Boolean, // true / false
     variant: String, // "", info, success, warning, danger, sub
+  },
+  computed: {
+    computedOpenOnNewPage() {
+      return this.openOnNewPage;
+    },
   },
 };
 </script>

@@ -9,11 +9,11 @@
       { disabled: disabled },
     ]"
   >
-    <p @click="toggleButton">{{ label }}</p>
+    <p v-if="label" @click="toggleButton">{{ label }}</p>
     <input
       @change="toggled"
       :disabled="disabled"
-      :value="invertedToggle"
+      :checked="computedState"
       type="checkbox"
       id="switch"
     />
@@ -42,8 +42,8 @@ export default {
     },
   },
   computed: {
-    invertedToggle() {
-      return !this.state;
+    computedState() {
+      return this.state;
     },
   },
 };
