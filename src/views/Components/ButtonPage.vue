@@ -81,7 +81,7 @@
         </table>
       </template>
       <template v-slot:code>
-        <prism-component :code="code" nameOfFile="LinkComponent.vue" />
+        <prism-component :code="code" nameOfFile="ButtonComponent.vue" />
       </template>
       <template v-slot:docs>
         <table-component :headings="propHeadings" :items="propDetails" />

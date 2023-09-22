@@ -16,9 +16,6 @@ export default {
 
 <style scoped lang="scss">
 .input-component {
-  display: flex;
-  gap: 16px;
-
   input {
     display: block;
     height: 30px;

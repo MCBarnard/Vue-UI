@@ -82,7 +82,7 @@ $default-slider-tray-color: grey;
 $dark-slider-tray-color: grey;
 $default-theme-color: #d400ff;
 $info-theme-color: #0094f9;
-$success-theme-color: #00ff00;
+$success-theme-color: #00b014;
 $warning-theme-color: #ffb000;
 $danger-theme-color: #ff0000;
 $disabled-theme-color: #b5b5b5;
@@ -199,6 +199,10 @@ $dark-disabled-label-color: $dark-text-color;
     margin: 0;
     cursor: pointer;
     color: $default-label-color;
+  }
+
+  input {
+    margin: 0;
   }
 
   input[type="checkbox"] {

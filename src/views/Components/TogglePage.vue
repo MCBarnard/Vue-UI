@@ -2,7 +2,7 @@
   <div class="toggle-page">
     <ShowcaseComponent>
       <template v-slot:component>
-        <toggle-component
+        <vue-u-i-toggle-component
           :state="computedActive"
           :label="computedLabel"
           :labelBehind="computedLabelBehind"
@@ -10,6 +10,7 @@
           :variant="computedVariant"
           :disabled="computedDisabled"
           :name="computedName"
+          @toggle="activeChanged"
         />
       </template>
       <template v-slot:controls>
@@ -73,15 +74,15 @@
               <toggle-component
                 size="small"
                 variant="info"
-                :state="computedLabelBehind"
-                @toggle="labelBehindChanged"
+                :state="computedDisabled"
+                @toggle="disabledChanged"
               />
             </td>
           </tr>
         </table>
       </template>
       <template v-slot:code>
-        <prism-component :code="code" nameOfFile="LinkComponent.vue" />
+        <prism-component :code="code" nameOfFile="ToggleComponent.vue" />
       </template>
       <template v-slot:docs>
         <table-component :headings="propHeadings" :items="propDetails" />
@@ -95,6 +96,7 @@ import ShowcaseComponent from "@/components/ShowcaseComponent";
 import SelectComponent from "@/components/Controls/SelectComponent";
 import InputComponent from "@/components/Controls/InputComponent";
 import ToggleComponent from "@/components/Controls/ToggleComponent";
+import VueUIToggleComponent from "@/components/Vue-UI/ToggleComponent";
 import PrismComponent from "@/components/PrismComponent";
 import TableComponent from "@/components/TableComponent";
 import * as ToggleComponentMarkdown from "@/assets/ComponentMarkdown/ToggleComponentMarkdown";
@@ -107,18 +109,19 @@ export default {
     ToggleComponent,
     PrismComponent,
     TableComponent,
+    VueUIToggleComponent,
   },
   data() {
     return {
       active: true,
       variant: "",
-      label: "",
+      label: "Your Toggle",
       labelBehind: false,
       size: "",
       disabled: false,
-      name: "toggle-name",
+      name: "toggle_name",
       variantOptions: ["info", "success", "warning", "danger"],
-      sizeOptions: ["", "small", "medium", "large"],
+      sizeOptions: ["small", "medium", "large"],
       code: ToggleComponentMarkdown.default,
       propHeadings: ["Prop", "Type", "Example", "Required", "Description"],
       propDetails: [
@@ -127,42 +130,42 @@ export default {
           "String",
           "'' / 'info' / 'success' / 'warning' / 'danger'",
           "No",
-          "This defines what color your link will be.",
+          "This defines what color your toggle will be.",
         ],
         [
-          "text",
-          "String",
+          "state",
+          "Boolean",
           "true",
           "Yes",
-          "This configures the rendered text on the screen",
+          "This caters for programmatic changing of a toggle",
         ],
         [
-          "to",
-          "String",
-          "link",
-          "No",
-          "This defines what component gets used under the hood, if it isn't empty we use a vue-route component, to which you we pass {name: 'theNameYouSpecified'}",
-        ],
-        [
-          "href",
-          "String",
-          "http://localhost",
-          "No",
-          "This defines what component gets used under the hood, if it isn't empty and the 'to' prop is empty we use an anchor tag, to which you we pass href='theHrefYouSpecified'",
-        ],
-        [
-          "title",
-          "String",
-          "Text to come up when hovering the link",
-          "No",
-          "We set the title prop on the anchor tag",
-        ],
-        [
-          "openOnNewPage",
+          "labelBehind",
           "Boolean",
           "true",
           "No",
-          "This will cause the link to open in a new tab",
+          "This positions your label infront or behind the toggle",
+        ],
+        [
+          "size",
+          "String",
+          "'small' / 'medium' / 'large'",
+          "No",
+          "This will set the size of your toggle and the font size of the label",
+        ],
+        [
+          "disabled",
+          "Boolean",
+          "true",
+          "No",
+          "This will disabled the toggle but if you programmatically update the toggle it will still change",
+        ],
+        [
+          "name",
+          "String",
+          "some_name",
+          "No",
+          "Sets the id of the input field behind the scenes",
         ],
       ],
     };
@@ -178,7 +181,7 @@ export default {
       this.labelBehind = !this.labelBehind;
     },
     labelChanged(item) {
-      if (item.target.value) {
+      if (item.target.value || item.target.value === "") {
         this.label = item.target.value;
       }
     },
@@ -189,10 +192,10 @@ export default {
       this.disabled = !this.disabled;
     },
     nameChanged(item) {
-      if (item.target.value) {
+      if (item.target.value || item.target.value === "") {
         this.toggleName = item.target.value;
         alert(
-          `This sets the toggle id behind the scenes to ${item.target.value}`
+          `This sets the toggle id behind the scenes to "${item.target.value}""`
         );
       }
     },

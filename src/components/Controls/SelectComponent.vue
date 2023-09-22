@@ -48,9 +48,6 @@ export default {
 
 <style scoped lang="scss">
 .select-component {
-  display: flex;
-  gap: 16px;
-
   select {
     display: block;
     height: 30px;

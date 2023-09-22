@@ -165,24 +165,26 @@ export default {
       this.linkVariant = item;
     },
     handleLinkChange(item) {
-      if (item.target.value) {
+      if (item.target.value || item.target.value === "") {
         this.routeName = "link";
         this.href = "";
         alert(`Will make this link point to {name: ${item.target.value}}`);
       }
     },
     handleHrefChange(item) {
-      if (item.target.value) {
+      if (item.target.value || item.target.value === "") {
         this.routeName = "";
         this.href = item.target.value;
         alert(`Will make this link point to src="${item.target.value}"`);
       }
     },
     handleTextChange(item) {
-      if (item.target.value) this.text = item.target.value;
+      if (item.target.value || item.target.value === "")
+        this.text = item.target.value;
     },
     handleLinkTitleChange(item) {
-      if (item.target.value) this.linkTitle = item.target.value;
+      if (item.target.value || item.target.value === "")
+        this.linkTitle = item.target.value;
     },
     handleToggledChange() {
       this.targetToggle = !this.targetToggle;

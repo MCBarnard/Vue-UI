@@ -100,7 +100,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Input Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "Interacting with these inputs may result in sudden bouts of inspiration",
         },
       },
       {
