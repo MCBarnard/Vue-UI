@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkvue_ui_library"]=self["webpackChunkvue_ui_library"]||[]).push([[156],{3649:function(a,n,c){c.r(n),c.d(n,{default:function(){return v}});var e=c(3396);const r=a=>((0,e.dD)("data-v-3ac9698c"),a=a(),(0,e.Cn)(),a),u={class:"about"},s=r((()=>(0,e._)("span",null,"This is the accordion component showcase page",-1))),t=[s];function i(a,n){return(0,e.wg)(),(0,e.iD)("div",u,t)}var o=c(89);const d={},l=(0,o.Z)(d,[["render",i],["__scopeId","data-v-3ac9698c"]]);var v=l}}]);
-//# sourceMappingURL=accordion-page.98778cca.js.map
