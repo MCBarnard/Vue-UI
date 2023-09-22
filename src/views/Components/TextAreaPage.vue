@@ -291,6 +291,20 @@ export default {
           "No",
           "Configures the autofocus property on the input field",
         ],
+        [
+          "height",
+          "String",
+          "500px",
+          "No",
+          "This property gets passed directly to the text area to adjust the height inline",
+        ],
+        [
+          "width",
+          "String",
+          "500px",
+          "No",
+          "This property gets passed directly to the text area to adjust the width inline",
+        ],
       ],
     };
   },
