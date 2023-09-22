@@ -177,7 +177,7 @@ import ToggleComponent from "@/components/Controls/ToggleComponent";
 import TextAreaComponent from "@/components/Vue-UI/TextAreaComponent";
 import PrismComponent from "@/components/PrismComponent";
 import TableComponent from "@/components/TableComponent";
-import * as InputComponentMarkdown from "@/assets/ComponentMarkdown/InputComponentMarkdown";
+import * as TextAreaComponentMarkdown from "@/assets/ComponentMarkdown/TextAreaComponentMarkdown";
 
 export default {
   components: {
@@ -210,7 +210,7 @@ export default {
       typeOptions: ["text", "date", "number"],
       widthOptions: ["300px", "360px", "450px"],
       heightOptions: ["80px", "150px", "210px"],
-      code: InputComponentMarkdown.default,
+      code: TextAreaComponentMarkdown.default,
       propHeadings: ["Prop", "Type", "Example", "Required", "Description"],
       propDetails: [
         [
