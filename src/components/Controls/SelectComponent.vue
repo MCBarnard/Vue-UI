@@ -2,7 +2,9 @@
   <div class="select-component">
     <label>{{ label }}</label>
     <select v-model="selected" @change="handleOptionsSelected">
-      <option value="" disabled selected>{{ defaults }}</option>
+      <option value="">
+        {{ defaults }}
+      </option>
       <option v-for="(option, key) in data" :key="key" :value="option">
         {{ option }}
       </option>
@@ -17,14 +19,28 @@ export default {
       selected: "",
     };
   },
+  mounted() {
+    this.selected = this.$props.state;
+  },
   props: {
     label: String,
     data: Array,
     defaults: String,
+    state: String,
   },
   methods: {
     handleOptionsSelected() {
-      this.$emit("selected", this.selected);
+      this.$emit("selected", this.computedSelected);
+    },
+  },
+  computed: {
+    computedSelected() {
+      return this.selected;
+    },
+  },
+  watch: {
+    state(val) {
+      this.selected = val;
     },
   },
 };

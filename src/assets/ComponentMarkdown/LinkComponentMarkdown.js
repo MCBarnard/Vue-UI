@@ -1,4 +1,4 @@
-export default ```<template>
+export default `<template>
   <span :class="[variant]">
     <router-link
       class="simple-link"
@@ -134,4 +134,4 @@ $sub-color-darker: #8b8989;
   }
 }
 </style>
-```;
+`;

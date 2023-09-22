@@ -58,7 +58,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Link Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "We've designed quite possibly the most over engineered hyperlinks... Enjoy",
         },
       },
       {
@@ -72,7 +72,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Button Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "Press Here for Button Brilliance (Disclaimer: No buttons were harmed in the making of this showcase, but their egos may have taken a hit!)",
         },
       },
       {

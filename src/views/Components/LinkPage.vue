@@ -73,7 +73,10 @@
         </table>
       </template>
       <template v-slot:code>
-        <prism-component :code="code" />
+        <prism-component :code="code" nameOfFile="LinkComponent.vue" />
+      </template>
+      <template v-slot:docs>
+        <table-component :headings="propHeadings" :items="propDetails" />
       </template>
     </ShowcaseComponent>
   </div>
@@ -86,7 +89,8 @@ import SelectComponent from "@/components/Controls/SelectComponent";
 import InputComponent from "@/components/Controls/InputComponent";
 import ToggleComponent from "@/components/Controls/ToggleComponent";
 import PrismComponent from "@/components/PrismComponent";
-// import * as LinkComponentMarkdown from "@/assets/ComponentMarkdown/LinkComponentMarkdown";
+import TableComponent from "@/components/TableComponent";
+import * as LinkComponentMarkdown from "@/assets/ComponentMarkdown/LinkComponentMarkdown";
 
 export default {
   components: {
@@ -96,6 +100,7 @@ export default {
     InputComponent,
     ToggleComponent,
     PrismComponent,
+    TableComponent,
   },
   data() {
     return {
@@ -106,7 +111,52 @@ export default {
       linkVariant: "",
       href: "",
       variantOptions: ["info", "success", "warning", "danger"],
-      code: "<template><div>Some code</div></template>",
+      code: LinkComponentMarkdown.default,
+      propHeadings: ["Prop", "Type", "Example", "Required", "Description"],
+      propDetails: [
+        [
+          "variant",
+          "String",
+          "'' / 'info' / 'success' / 'warning' / 'danger'",
+          "No",
+          "This defines what color your link will be.",
+        ],
+        [
+          "text",
+          "String",
+          "true",
+          "Yes",
+          "This configures the rendered text on the screen",
+        ],
+        [
+          "to",
+          "String",
+          "link",
+          "No",
+          "This defines what component gets used under the hood, if it isn't empty we use a vue-route component, to which you we pass {name: 'theNameYouSpecified'}",
+        ],
+        [
+          "href",
+          "String",
+          "http://localhost",
+          "No",
+          "This defines what component gets used under the hood, if it isn't empty and the 'to' prop is empty we use an anchor tag, to which you we pass href='theHrefYouSpecified'",
+        ],
+        [
+          "title",
+          "String",
+          "Text to come up when hovering the link",
+          "No",
+          "We set the title prop on the anchor tag",
+        ],
+        [
+          "openOnNewPage",
+          "Boolean",
+          "true",
+          "No",
+          "This will cause the link to open in a new tab",
+        ],
+      ],
     };
   },
   methods: {
@@ -134,10 +184,6 @@ export default {
       if (item.target.value) this.linkTitle = item.target.value;
     },
     handleToggledChange() {
-      console.log("=======");
-      console.log(this.targetToggle);
-      console.log(!this.targetToggle);
-      console.log("=======");
       this.targetToggle = !this.targetToggle;
     },
   },

@@ -15,14 +15,22 @@
       :disabled="disabled"
       :checked="computedState"
       type="checkbox"
-      id="switch"
+      :id="computedName"
     />
-    <label for="switch"></label>
+    <label :for="computedName"></label>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      cleanName: "",
+    };
+  },
+  mounted() {
+    this.cleanName = this.name || this.generateRandomLetters(5);
+  },
   props: {
     state: Boolean, // true / false
     label: String, // ""
@@ -30,7 +38,8 @@ export default {
     size: String, // "" / small / medium / large
     variant: String, // "" / info / success / warning / danger
     dark: Boolean, // true / false
-    disabled: Boolean, // true / false
+    disabled: Boolean, // true / false,
+    name: String,
   },
   methods: {
     toggleButton() {
@@ -40,10 +49,24 @@ export default {
     toggled() {
       this.$emit("toggle", this.state);
     },
+    generateRandomLetters(length) {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+      let result = "";
+
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * letters.length);
+        result += letters.charAt(randomIndex);
+      }
+
+      return result;
+    },
   },
   computed: {
     computedState() {
       return this.state;
+    },
+    computedName() {
+      return this.cleanName;
     },
   },
 };

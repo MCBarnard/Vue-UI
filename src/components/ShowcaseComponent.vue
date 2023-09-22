@@ -1,7 +1,7 @@
 <template>
   <div class="showcase">
     <div class="showcase__top">
-      <div class="showcase__top__center">
+      <div :class="['showcase__top__center', { wide: wideItems }]">
         <slot name="component"></slot>
       </div>
     </div>
@@ -12,7 +12,20 @@
         <slot name="controls"></slot>
       </div>
       <div class="showcase__bottom__code">
-        <slot name="code"></slot>
+        <div class="content">
+          <div class="intro">
+            <p class="intro-heading">Copy the code</p>
+            <p class="intro-sub">
+              Copy and create this component hassle free in your own repository.
+            </p>
+          </div>
+          <slot name="code"></slot>
+        </div>
+      </div>
+      <div class="showcase__bottom__docs">
+        <p>Docs</p>
+        <p class="subtext">What do the different props do specifically</p>
+        <slot name="docs"></slot>
       </div>
     </div>
   </div>
@@ -21,6 +34,9 @@
 <script>
 export default {
   name: "ShowcaseComponent",
+  props: {
+    wideItems: Boolean,
+  },
 };
 </script>
 
@@ -47,13 +63,17 @@ export default {
       flex-direction: column;
       justify-content: center;
       height: 100%;
+
+      &.wide {
+        width: 100%;
+      }
     }
   }
 
   &__bottom {
     margin-top: 2rem;
     background: #fff;
-    padding: 2rem;
+    padding: 2rem 0;
 
     p {
       font-family: "Lobster", cursive;
@@ -79,8 +99,46 @@ export default {
 
     &__code {
       position: relative;
-      max-width: 600px;
-      margin: auto;
+      margin: 2rem auto;
+      padding: 2rem 0;
+      background: #ebecee;
+      position: relative;
+      overflow-x: hidden;
+
+      &:after {
+        content: "";
+        background: #3b424e45;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        transform: translateX(500px) skewX(-45deg);
+        width: calc(100% * 2);
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+
+        .intro {
+          max-width: 600px;
+          width: 100%;
+          margin: auto;
+        }
+        .intro-heading {
+          margin: 0 auto;
+          font-family: "Lobster", cursive;
+          font-size: 28px;
+        }
+
+        .intro-sub {
+          margin: 0 auto 1.5rem;
+          font-size: 12px;
+          font-family: Montserrat;
+        }
+      }
     }
   }
 }

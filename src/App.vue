@@ -138,6 +138,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat&family=Poppins:wght@300;400;500;600;700;800&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -263,6 +264,7 @@ body {
       color: #4a4a4a;
       font-weight: 400;
       line-height: 1.5;
+      font-family: "Lobster", cursive;
 
       a {
         color: #3273dc;
