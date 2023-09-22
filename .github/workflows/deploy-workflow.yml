@@ -1,7 +1,7 @@
 name: 🚀 Deploy To GoDaddy
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   web-deploy:
     name: 👾 SSH In Then Fetch and Pull latest Version
