@@ -268,7 +268,7 @@ export default {
           "Boolean",
           "false",
           "No",
-          "Should the input field autofocus on page load",
+          "Configures the autofocus property on the input field",
         ],
       ],
     };
