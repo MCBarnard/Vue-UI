@@ -99,7 +99,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Text Area Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "Welcome to the thrill-filled world of text areas, where the only thing scarier than writer's block is running out of space.",
         },
       },
       {
