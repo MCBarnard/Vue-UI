@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
+import OverviewPage from "../views/OverviewPage.vue";
+import DevelopersPage from "../views/DevelopersPage.vue";
+import GetStarted from "../views/Components/GetStarted.vue";
+import LinkPage from "../views/Components/LinkPage.vue";
+import ButtonPage from "../views/Components/ButtonPage.vue";
+import TogglePage from "../views/Components/TogglePage.vue";
+import InputPage from "../views/Components/InputPage.vue";
+import TextAreaPage from "../views/Components/TextAreaPage.vue";
+import AccordionPage from "../views/Components/AccordionPage.vue";
 
 const routes = [
   {
     path: "/",
     name: "overview",
-    component: () =>
-      import(
-        /* webpackChunkName: "overview-page" */ "../views/OverviewPage.vue"
-      ),
+    component: OverviewPage,
     meta: {
       subTitle: "Overview",
       cleanname: "What is Vue UI",
@@ -18,10 +24,7 @@ const routes = [
   {
     path: "/about-the-developers",
     name: "developers",
-    component: () =>
-      import(
-        /* webpackChunkName: "developers" */ "../views/DevelopersPage.vue"
-      ),
+    component: DevelopersPage,
     meta: {
       subTitle: "The team",
       cleanname: "Meet the developers",
@@ -36,10 +39,7 @@ const routes = [
       {
         path: "/components/get-started",
         name: "get-started",
-        component: () =>
-          import(
-            /* webpackChunkName: "get-started" */ "../views/Components/GetStarted.vue"
-          ),
+        component: GetStarted,
         meta: {
           subTitle: "Components",
           cleanname: "Get Started with Vue UI",
@@ -50,10 +50,7 @@ const routes = [
       {
         path: "/components/link",
         name: "link",
-        component: () =>
-          import(
-            /* webpackChunkName: "link-page" */ "../views/Components/LinkPage.vue"
-          ),
+        component: LinkPage,
         meta: {
           subTitle: "Components",
           cleanname: "Link Component",
@@ -64,10 +61,7 @@ const routes = [
       {
         path: "/components/button",
         name: "button",
-        component: () =>
-          import(
-            /* webpackChunkName: "button-page" */ "../views/Components/ButtonPage.vue"
-          ),
+        component: ButtonPage,
         meta: {
           subTitle: "Components",
           cleanname: "Button Component",
@@ -78,10 +72,7 @@ const routes = [
       {
         path: "/components/toggle",
         name: "toggle",
-        component: () =>
-          import(
-            /* webpackChunkName: "toggle-page" */ "../views/Components/TogglePage.vue"
-          ),
+        component: TogglePage,
         meta: {
           subTitle: "Components",
           cleanname: "Toggle Component",
@@ -92,10 +83,7 @@ const routes = [
       {
         path: "/components/input",
         name: "input",
-        component: () =>
-          import(
-            /* webpackChunkName: "input-page" */ "../views/Components/InputPage.vue"
-          ),
+        component: InputPage,
         meta: {
           subTitle: "Components",
           cleanname: "Input Component",
@@ -106,10 +94,7 @@ const routes = [
       {
         path: "/components/text-area",
         name: "text-area",
-        component: () =>
-          import(
-            /* webpackChunkName: "text-area-page" */ "../views/Components/TextAreaPage.vue"
-          ),
+        component: TextAreaPage,
         meta: {
           subTitle: "Components",
           cleanname: "Text Area Component",
@@ -120,10 +105,7 @@ const routes = [
       {
         path: "/components/accordion",
         name: "accordion",
-        component: () =>
-          import(
-            /* webpackChunkName: "accordion-page" */ "../views/Components/AccordionPage.vue"
-          ),
+        component: AccordionPage,
         meta: {
           subTitle: "Components",
           cleanname: "Accordion Component",

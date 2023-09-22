@@ -23,7 +23,7 @@
         @blur="blurInput"
         @focus="focusInput"
       />
-      
+
       <label :class="[{ danger: subTextColor === 'danger' }]">{{
         label
       }}</label>
