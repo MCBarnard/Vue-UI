@@ -86,7 +86,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Toggle Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "Get ready to switch it up in the most togglific way possible. May cause spam clicking!",
         },
       },
       {

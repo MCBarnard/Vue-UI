@@ -20,6 +20,7 @@
             <td>variant</td>
             <td>
               <select-component
+                :state="selectedVariant"
                 @selected="variantChanged"
                 :data="variantOptions"
                 defaults="default"
