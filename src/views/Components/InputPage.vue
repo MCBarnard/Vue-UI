@@ -249,13 +249,7 @@ export default {
           "No",
           "Determines what color the subText should be, if not specified, we will use the variant. Danger will make the label red as well",
         ],
-        [
-          "disabled",
-          "Boolean",
-          "true",
-          "No",
-          "Makes the input field disabled",
-        ],
+        ["disabled", "Boolean", "true", "No", "Makes the input field disabled"],
         [
           "type",
           "String",

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_ui_library"]=self["webpackChunkvue_ui_library"]||[]).push([[183],{1412:function(e,a,n){n.r(a),n.d(a,{default:function(){return l}});var t=n(3396);const r=e=>((0,t.dD)("data-v-def096f8"),e=e(),(0,t.Cn)(),e),u={class:"about"},s=r((()=>(0,t._)("span",null,"This is the text area component showcase page",-1))),c=[s];function i(e,a){return(0,t.wg)(),(0,t.iD)("div",u,c)}var d=n(89);const f={},o=(0,d.Z)(f,[["render",i],["__scopeId","data-v-def096f8"]]);var l=o}}]);
+//# sourceMappingURL=text-area-page.033c832b.js.map
