@@ -38,10 +38,7 @@
           <tr>
             <td>label</td>
             <td>
-              <input-component
-                :value="computedLabel"
-                @change="labelChanged"
-              />
+              <input-component :value="computedLabel" @change="labelChanged" />
             </td>
             <td class="divider"></td>
             <td>labelBehind</td>
@@ -67,10 +64,7 @@
             <td class="divider"></td>
             <td>name</td>
             <td>
-              <input-component
-                :value="computedName"
-                @change="nameChanged"
-              />
+              <input-component :value="computedName" @change="nameChanged" />
             </td>
           </tr>
           <tr>
@@ -98,7 +92,6 @@
 
 <script>
 import ShowcaseComponent from "@/components/ShowcaseComponent";
-import LinkComponent from "@/components/Vue-UI/LinkComponent";
 import SelectComponent from "@/components/Controls/SelectComponent";
 import InputComponent from "@/components/Controls/InputComponent";
 import ToggleComponent from "@/components/Controls/ToggleComponent";
@@ -109,7 +102,6 @@ import * as ToggleComponentMarkdown from "@/assets/ComponentMarkdown/ToggleCompo
 export default {
   components: {
     ShowcaseComponent,
-    LinkComponent,
     SelectComponent,
     InputComponent,
     ToggleComponent,
@@ -199,7 +191,9 @@ export default {
     nameChanged(item) {
       if (item.target.value) {
         this.toggleName = item.target.value;
-        alert(`This sets the toggle id behind the scenes to ${item.target.value}`);
+        alert(
+          `This sets the toggle id behind the scenes to ${item.target.value}`
+        );
       }
     },
   },
