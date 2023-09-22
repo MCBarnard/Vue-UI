@@ -15,6 +15,6 @@ jobs:
           key: ${{ secrets.GO_DADDY_PRIVATE_SSH_KEY }}
           args: "-tt -o HostKeyAlgorithms=ssh-dss -vvv"
           command: |
-            cd vue-ui/
+            cd www/vue_components/
             git fetch
             git pull
