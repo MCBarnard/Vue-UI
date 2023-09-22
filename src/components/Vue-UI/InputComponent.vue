@@ -35,6 +35,7 @@
         variant,
         subTextColor,
         { dark: dark },
+        { 'full-width': full },
       ]"
     >
       {{ subText }}
@@ -322,6 +323,11 @@ $trans-04: all 0.4s ease;
   opacity: 0;
   pointer-events: none;
   transition: $trans-04;
+  width: 320px;
+
+  &.full-width {
+    width: 100%;
+  }
 
   &.show {
     opacity: 1;
