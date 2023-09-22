@@ -12,7 +12,7 @@
             { active: $route.path.includes('/components') },
           ]"
         >
-          <a @click="toggleComponentsDropdown" href="#">Components</a>
+          <a @click="toggleComponentsDropdown">Components</a>
           <div :class="['caret', { active: showComponentsDropdown }]">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
@@ -20,14 +20,6 @@
             id="componentsDropdown"
             :class="['sub-nav-list', { open: showComponentsDropdown }]"
           >
-            <li>
-              <router-link
-                :to="{ name: 'get-started' }"
-                :class="[{ active: $route.name === 'get-started' }]"
-              >
-                Getting Started
-              </router-link>
-            </li>
             <li>
               <router-link
                 :to="{ name: 'link' }"
@@ -68,6 +60,22 @@
                 TextArea
               </router-link>
             </li>
+          </ul>
+        </li>
+        <li
+          :class="[
+            'nav-list-item',
+            { active: $route.path.includes('/ui-components') },
+          ]"
+        >
+          <a @click="toggleUIComponentsDropdown">UI Components</a>
+          <div :class="['caret', { active: showUIComponentsDropdown }]">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <ul
+            id="uiComponentsDropdown"
+            :class="['sub-nav-list', { open: showUIComponentsDropdown }]"
+          >
             <li>
               <router-link
                 :to="{ name: 'accordion' }"
@@ -110,6 +118,7 @@ export default {
   data() {
     return {
       showComponentsDropdown: false,
+      showUIComponentsDropdown: false,
     };
   },
   computed: {
@@ -129,9 +138,32 @@ export default {
       if (dropdown.style.maxHeight) {
         dropdown.style.maxHeight = null;
       } else {
+        this.closeToggle("uiComponentsDropdown");
         dropdown.style.maxHeight = dropdown.scrollHeight + "px";
       }
       this.showComponentsDropdown = !this.showComponentsDropdown;
+    },
+    toggleUIComponentsDropdown() {
+      const dropdown = document.getElementById("uiComponentsDropdown");
+      if (dropdown.style.maxHeight) {
+        dropdown.style.maxHeight = null;
+      } else {
+        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        this.closeToggle("componentsDropdown");
+      }
+      this.showUIComponentsDropdown = !this.showUIComponentsDropdown;
+    },
+    closeToggle(id) {
+      const dropdown = document.getElementById(id);
+      if (dropdown.style.maxHeight) {
+        dropdown.style.maxHeight = null;
+      }
+      if (id === "uiComponentsDropdown") {
+        this.showUIComponentsDropdown = false;
+      }
+      if (id === "componentsDropdown") {
+        this.showComponentsDropdown = false;
+      }
     },
   },
 };
@@ -188,6 +220,8 @@ body {
     padding: 0;
     margin-bottom: auto;
     list-style: none;
+    max-height: 380px;
+    overflow-y: auto;
 
     .nav-list-item {
       position: relative;

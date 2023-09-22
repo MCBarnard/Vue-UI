@@ -1,13 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import OverviewPage from "../views/OverviewPage.vue";
 import DevelopersPage from "../views/DevelopersPage.vue";
-import GetStarted from "../views/Components/GetStarted.vue";
 import LinkPage from "../views/Components/LinkPage.vue";
 import ButtonPage from "../views/Components/ButtonPage.vue";
 import TogglePage from "../views/Components/TogglePage.vue";
 import InputPage from "../views/Components/InputPage.vue";
 import TextAreaPage from "../views/Components/TextAreaPage.vue";
-import AccordionPage from "../views/Components/AccordionPage.vue";
+import AccordionPage from "../views/Interface/AccordionPage.vue";
 
 const routes = [
   {
@@ -36,17 +35,6 @@ const routes = [
     path: "/components",
     name: "components",
     children: [
-      {
-        path: "/components/get-started",
-        name: "get-started",
-        component: GetStarted,
-        meta: {
-          subTitle: "Components",
-          cleanname: "Get Started with Vue UI",
-          intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
-        },
-      },
       {
         path: "/components/link",
         name: "link",
@@ -102,18 +90,30 @@ const routes = [
             "Welcome to the thrill-filled world of text areas, where the only thing scarier than writer's block is running out of space.",
         },
       },
+    ],
+  },
+  {
+    path: "/ui-components",
+    name: "ui-components",
+    children: [
       {
-        path: "/components/accordion",
+        path: "/ui-components/accordion",
         name: "accordion",
         component: AccordionPage,
         meta: {
           subTitle: "Components",
           cleanname: "Accordion Component",
           intro:
-            "The team that gets the dream going. We are a small team at the cusp of greatness",
+            "Accordion to the developers, they were harmonizing while building this component...",
         },
       },
     ],
+    meta: {
+      subTitle: "The team",
+      cleanname: "Meet the developers",
+      intro:
+        "The team that gets the dream going. We are a small team at the cusp of greatness",
+    },
   },
 ];
 
