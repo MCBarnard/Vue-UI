@@ -1,0 +1,20 @@
+name: 🚀 Deploy To GoDaddy
+on:
+  push:
+    branches: [ master ]
+jobs:
+  web-deploy:
+    name: 👾 SSH In Then Fetch and Pull latest Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Fetch and Pull latest Version
+        uses: fifsky/ssh-action@master
+        with:
+          host: thinusbarnard.co.za
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.GO_DADDY_PRIVATE_SSH_KEY }}
+          args: "-tt -o HostKeyAlgorithms=ssh-dss -vvv"
+          command: |
+            cd vue-ui/
+            git fetch
+            git pull
