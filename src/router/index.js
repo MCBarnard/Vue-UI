@@ -7,6 +7,7 @@ import TogglePage from "../views/Components/TogglePage.vue";
 import InputPage from "../views/Components/InputPage.vue";
 import TextAreaPage from "../views/Components/TextAreaPage.vue";
 import AccordionPage from "../views/Interface/AccordionPage.vue";
+import CircularProgressPage from "../views/Interface/CircularProgressPage";
 
 const routes = [
   {
@@ -101,10 +102,21 @@ const routes = [
         name: "accordion",
         component: AccordionPage,
         meta: {
-          subTitle: "Components",
+          subTitle: "Interface",
           cleanname: "Accordion Component",
           intro:
             "Accordion to the developers, they were harmonizing while building this component...",
+        },
+      },
+      {
+        path: "/ui-components/circular-progress",
+        name: "circular-progress",
+        component: CircularProgressPage,
+        meta: {
+          subTitle: "Interface",
+          cleanname: "Circular Progress Component",
+          intro:
+            "I promise not to make a joke about progress bars... I'll wheelie try",
         },
       },
     ],

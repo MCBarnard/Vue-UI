@@ -84,6 +84,14 @@
                 Accordion
               </router-link>
             </li>
+            <li>
+              <router-link
+                :to="{ name: 'circular-progress' }"
+                :class="[{ active: $route.name === 'circular-progress' }]"
+              >
+                Circular Progress
+              </router-link>
+            </li>
           </ul>
         </li>
         <li
