@@ -1,5 +1,5 @@
 <template>
-  <div class="skill" :style="`--total-skill: ${percentage}`">
+  <div class="skill" :style="`--total-skill: ${computedPercentage}`">
     <div class="outer">
       <div class="inner">
         <div id="number">{{ counter }}</div>
@@ -38,22 +38,24 @@ export default {
     gradient: Boolean, // true / false
     width: String, // 160px
     height: String, // 160px
+    value: Number, // 78
   },
   computed: {
+    computedPercentage() {
+      return this.percentage < 100 ? this.percentage : 100;
+    },
     capShape() {
       return this.rounded ? "round" : "square";
     },
     computedStartColor() {
-      // default gradient: #e91e63 -> #673ab7
-      // info gradient: #1046cf -> #00a6eb
       if (this.gradient && !this.variant) {
-        return "#e91e63";
+        return "#f900ff";
       } else if (!this.gradient && !this.variant) {
-        return "#a900ff";
+        return "#ce00ff";
       } else if (!this.gradient && this.variant === "info") {
         return "#218afa";
       } else if (this.gradient && this.variant === "info") {
-        return "#1046cf";
+        return "#00a6eb";
       } else if (!this.gradient && this.variant === "success") {
         return "#00b014";
       } else if (this.gradient && this.variant === "success") {
@@ -70,16 +72,14 @@ export default {
       return "#a900ff";
     },
     computedEndColor() {
-      // default gradient: #e91e63 -> #673ab7
-      // info gradient: #1046cf -> #00a6eb
       if (this.gradient && !this.variant) {
         return "#673ab7";
       } else if (!this.gradient && !this.variant) {
-        return "#a900ff";
+        return "#ce00ff";
       } else if (!this.gradient && this.variant === "info") {
         return "#218afa";
       } else if (this.gradient && this.variant === "info") {
-        return "#00a6eb";
+        return "#1046cf";
       } else if (!this.gradient && this.variant === "success") {
         return "#00b014";
       } else if (this.gradient && this.variant === "success") {
@@ -96,25 +96,30 @@ export default {
       return "#a900ff";
     },
   },
-  mounted() {
-    setTimeout(() => {
-      this.animateProgress(78);
-    }, 100);
-  },
   methods: {
+    triggerAnimation() {
+      setTimeout(() => {
+        this.animateProgress(this.value);
+      }, 100);
+    },
     animateProgress(total) {
       this.percentage = total;
       clearInterval(this.interval);
       this.interval = setInterval(() => {
-        if (this.counter > this.percentage) {
+        if (this.counter > this.computedPercentage) {
           this.counter--;
-        } else if (this.counter < this.percentage) {
+        } else if (this.counter < this.computedPercentage) {
           this.counter++;
         } else {
           clearInterval(this.interval);
         }
         if (this.counter > 100) clearInterval(this.interval);
       }, 20);
+    },
+  },
+  watch: {
+    computedPercentage() {
+      this.triggerAnimation();
     },
   },
 };
@@ -134,8 +139,6 @@ export default {
   border-radius: 50%;
   padding: 20px;
   position: relative;
-  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
-    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
 }
 
 .inner {
@@ -146,10 +149,6 @@ export default {
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
-    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
-    -0.5px -0.5px 0px rgba(255, 255, 255, 1),
-    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
 }
 
 #number {

@@ -8,6 +8,8 @@
           width="160px"
           :gradient="gradient"
           :variant="variant"
+          :value="computedProgressValue"
+          ref="circulatProgress"
         />
       </template>
       <template v-slot:controls>
@@ -43,6 +45,27 @@
                 @toggle="gradientChanged"
               />
             </td>
+            <td class="divider"></td>
+            <td>triggerAnimation()</td>
+            <td>
+              <vue-u-i-button-component
+                size="medium"
+                variant="info"
+                corners="rounded"
+                @click="triggerProgressAnimation"
+              >
+                Trigger Animation
+              </vue-u-i-button-component>
+            </td>
+          </tr>
+          <tr>
+            <td>gradient</td>
+            <td>
+              <input-component
+                :value="computedProgressValue"
+                @change="progressValueChanged"
+              />
+            </td>
           </tr>
         </table>
       </template>
@@ -66,6 +89,8 @@ import PrismComponent from "@/components/PrismComponent";
 import TableComponent from "@/components/TableComponent";
 import SelectComponent from "@/components/Controls/SelectComponent";
 import CircularProgressComponent from "@/components/Vue-UI/CircularProgressComponent";
+import VueUIButtonComponent from "@/components/Vue-UI/ButtonComponent";
+import InputComponent from "@/components/Controls/InputComponent";
 import * as CircularProgressComponentMarkdown from "@/assets/ComponentMarkdown/CircularProgressComponentMarkdown";
 
 export default {
@@ -76,9 +101,12 @@ export default {
     TableComponent,
     SelectComponent,
     CircularProgressComponent,
+    VueUIButtonComponent,
+    InputComponent,
   },
   data() {
     return {
+      progressValue: 78,
       rounded: true,
       gradient: true,
       variant: "",
@@ -104,6 +132,14 @@ export default {
     };
   },
   methods: {
+    progressValueChanged(item) {
+      if (item.target.value || item.target.value === "") {
+        this.progressValue = item.target.value;
+      }
+    },
+    triggerProgressAnimation() {
+      this.$refs.circulatProgress.triggerAnimation();
+    },
     roundedChanged() {
       this.rounded = !this.rounded;
     },
@@ -115,6 +151,9 @@ export default {
     },
   },
   computed: {
+    computedProgressValue() {
+      return this.progressValue;
+    },
     computedRounded() {
       return this.rounded;
     },
