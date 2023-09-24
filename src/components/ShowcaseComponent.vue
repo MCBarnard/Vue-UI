@@ -4,6 +4,9 @@
       <div :class="['showcase__top__center', { wide: wideItems }]">
         <slot name="component"></slot>
       </div>
+      <div class="contextual">
+        <slot name="contextual"></slot>
+      </div>
     </div>
     <div class="showcase__bottom">
       <p>Props</p>
@@ -57,6 +60,16 @@ export default {
     border-radius: 2rem 0 2rem;
     box-shadow: 0px 0px 30px -20px #828282;
     padding: 0 2rem;
+    position: relative;
+
+    .contextual {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #b4b4b4;
+      font-family: "Lobster", cursive;
+    }
 
     &__center {
       display: flex;

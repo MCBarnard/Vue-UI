@@ -1,8 +1,11 @@
 <template>
-  <div class="skill" :style="`--total-skill: ${computedPercentage}`">
+  <div
+    :class="['skill', { bordered }]"
+    :style="`--total-skill: ${computedPercentage}`"
+  >
     <div class="outer">
       <div class="inner">
-        <div id="number">{{ counter }}</div>
+        <div id="number" :class="[{ bold }, size]">{{ counter }}</div>
       </div>
     </div>
     <svg
@@ -39,6 +42,9 @@ export default {
     width: String, // 160px
     height: String, // 160px
     value: Number, // 78
+    bordered: Boolean, // true / false
+    size: String, // small, medium, large
+    bold: Boolean, // true, false
   },
   computed: {
     computedPercentage() {
@@ -118,19 +124,23 @@ export default {
     },
   },
   watch: {
-    computedPercentage() {
+    value() {
       this.triggerAnimation();
     },
   },
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .skill {
   width: 160px;
   height: 160px;
   border-radius: 50%;
   position: relative;
+
+  &.bordered {
+    border: 1px solid #f1f1f1;
+  }
 }
 
 .outer {
@@ -152,8 +162,23 @@ export default {
 }
 
 #number {
-  font-weight: 600;
   color: #555;
+
+  &.bold {
+    font-weight: bold;
+  }
+
+  &.small {
+    font-size: 12px;
+  }
+
+  &.medium {
+    font-size: 16px;
+  }
+
+  &.large {
+    font-size: 20px;
+  }
 }
 
 circle {

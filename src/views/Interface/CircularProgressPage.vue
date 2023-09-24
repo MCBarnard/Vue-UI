@@ -10,7 +10,15 @@
           :variant="variant"
           :value="computedProgressValue"
           ref="circulatProgress"
+          :bordered="computedBordered"
+          :bold="computedWeight"
+          :size="computedSize"
         />
+      </template>
+      <template v-slot:contextual>
+        <div :class="['context', { showContext }]">
+          Click on the toggle animation button...
+        </div>
       </template>
       <template v-slot:controls>
         <table class="props-table">
@@ -59,11 +67,43 @@
             </td>
           </tr>
           <tr>
-            <td>gradient</td>
+            <td>value</td>
             <td>
               <input-component
                 :value="computedProgressValue"
                 @change="progressValueChanged"
+                type="number"
+              />
+            </td>
+            <td class="divider"></td>
+            <td>bordered</td>
+            <td>
+              <toggle-component
+                size="small"
+                variant="info"
+                :state="computedBordered"
+                @toggle="borderedChanged"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>bold</td>
+            <td>
+              <toggle-component
+                size="small"
+                variant="info"
+                :state="computedWeight"
+                @toggle="weightChanged"
+              />
+            </td>
+            <td class="divider"></td>
+            <td>fontSize</td>
+            <td>
+              <select-component
+                :state="computedSize"
+                @selected="sizeChanged"
+                :data="sizeOptions"
+                defaults="default"
               />
             </td>
           </tr>
@@ -106,11 +146,17 @@ export default {
   },
   data() {
     return {
+      showContext: true,
       progressValue: 78,
+      size: "small",
+      bold: true,
       rounded: true,
       gradient: true,
+      bordered: false,
       variant: "",
       variantOptions: ["info", "success", "warning", "danger"],
+      sizeOptions: ["small", "medium", "large"],
+      weightOptions: ["normal", "bold"],
       code: CircularProgressComponentMarkdown.default,
       propHeadings: ["Prop", "Type", "Example", "Required", "Description"],
       propDetails: [
@@ -138,6 +184,7 @@ export default {
       }
     },
     triggerProgressAnimation() {
+      this.showContext = false;
       this.$refs.circulatProgress.triggerAnimation();
     },
     roundedChanged() {
@@ -146,8 +193,17 @@ export default {
     variantChanged(item) {
       this.variant = item;
     },
+    weightChanged() {
+      this.bold = !this.bold;
+    },
+    sizeChanged(item) {
+      this.size = item;
+    },
     gradientChanged() {
       this.gradient = !this.gradient;
+    },
+    borderedChanged() {
+      this.bordered = !this.bordered;
     },
   },
   computed: {
@@ -163,6 +219,15 @@ export default {
     computedGradient() {
       return this.gradient;
     },
+    computedBordered() {
+      return this.bordered;
+    },
+    computedWeight() {
+      return this.bold;
+    },
+    computedSize() {
+      return this.size;
+    },
   },
 };
 </script>
@@ -174,6 +239,16 @@ export default {
 
 .circular-progress-page {
   padding-top: 3rem;
+
+  .context {
+    transition: all 2s ease;
+    pointer-events: none;
+    opacity: 0;
+
+    &.showContext {
+      opacity: 1;
+    }
+  }
 
   .props-table {
     td {
