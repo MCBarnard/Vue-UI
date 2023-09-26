@@ -1,18 +1,20 @@
 <template>
   <div
-    :class="['skill', { bordered }]"
-    :style="`--total-skill: ${computedPercentage}`"
+    :class="['skill', { showTrack }]"
+    :style="`--total-skill: ${computedPercentage}; --circumference: ${computedCircumference};--box:${computedBoxSize}px;--border-size: ${computedBorder}px`"
   >
     <div class="outer">
       <div class="inner">
-        <div id="number" :class="[{ bold }, size]">{{ counter }}</div>
+        <div id="number" v-if="!hideValue" :class="[{ bold }, size]">
+          {{ counter }}%
+        </div>
       </div>
     </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
-      :width="width"
-      :height="height"
+      :width="`${computedBoxSize}px`"
+      :height="`${computedBoxSize}px`"
     >
       <defs>
         <linearGradient id="GradientColor">
@@ -20,13 +22,17 @@
           <stop offset="100%" :stop-color="computedEndColor" />
         </linearGradient>
       </defs>
-      <circle cx="80" cy="80" r="70" :stroke-linecap="capShape" />
+      <circle
+        :cx="computedRadius + computedBorder / 2"
+        :cy="computedRadius + computedBorder / 2"
+        :r="computedRadius"
+        :stroke-linecap="capShape"
+      />
     </svg>
   </div>
 </template>
 
 <script>
-// move data values into props to make this component re- usable
 export default {
   data() {
     return {
@@ -39,16 +45,60 @@ export default {
     variant: String, // '' / info / success / warning / danger
     rounded: Boolean, // true / false
     gradient: Boolean, // true / false
-    width: String, // 160px
-    height: String, // 160px
     value: Number, // 78
-    bordered: Boolean, // true / false
+    showTrack: Boolean, // true / false
     size: String, // small, medium, large
     bold: Boolean, // true, false
+    hideValue: Boolean, // true, false
   },
   computed: {
     computedPercentage() {
       return this.percentage < 100 ? this.percentage : 100;
+    },
+    computedBoxSize() {
+      return this.computedRadius * 2 + this.computedBorder;
+    },
+    computedCircumference() {
+      switch (this.size) {
+        case "small":
+          return 157.08;
+        case "medium":
+          return 219.91;
+        case "large":
+          return 345.58;
+        case "extra-large":
+          return 502.65;
+        default:
+          return 219.91;
+      }
+    },
+    computedRadius() {
+      switch (this.size) {
+        case "small":
+          return 25;
+        case "medium":
+          return 35;
+        case "large":
+          return 55;
+        case "extra-large":
+          return 80;
+        default:
+          return 35;
+      }
+    },
+    computedBorder() {
+      switch (this.size) {
+        case "small":
+          return 10;
+        case "medium":
+          return 15;
+        case "large":
+          return 20;
+        case "extra-large":
+          return 25;
+        default:
+          return 15;
+      }
     },
     capShape() {
       return this.rounded ? "round" : "square";
@@ -133,32 +183,48 @@ export default {
 
 <style scoped lang="scss">
 .skill {
-  width: 160px;
-  height: 160px;
+  width: var(--box);
+  height: var(--box);
   border-radius: 50%;
   position: relative;
+  border: 1px solid transparent;
 
-  &.bordered {
+  &.showTrack {
     border: 1px solid #f1f1f1;
+    background: #f1f1f1;
+    border-radius: 50%;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(calc(-50% + 1px), calc(-50% + 1px));
+      border: 1px solid #f1f1f1;
+      width: calc(var(--box) - var(--border-size) * 2);
+      height: calc(var(--box) - var(--border-size) * 2);
+      border-radius: 50%;
+      background: #fff;
+    }
   }
 }
 
 .outer {
-  height: 160px;
-  width: 160px;
+  height: var(--box);
+  width: var(--box);
   border-radius: 50%;
-  padding: 20px;
   position: relative;
 }
 
 .inner {
-  height: 120px;
-  width: 120px;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 2;
 }
 
 #number {
@@ -179,14 +245,20 @@ export default {
   &.large {
     font-size: 20px;
   }
+
+  &.extra-large {
+    font-size: 26px;
+  }
 }
 
 circle {
   fill: none;
   stroke: url(#GradientColor);
-  stroke-width: 20px;
-  stroke-dasharray: 440;
-  stroke-dashoffset: calc(440 - (440 * var(--total-skill) / 100));
+  stroke-width: var(--border-size);
+  stroke-dasharray: var(--circumference);
+  stroke-dashoffset: calc(
+    var(--circumference) - (var(--circumference) * var(--total-skill) / 100)
+  );
   transition: all 2s;
 }
 

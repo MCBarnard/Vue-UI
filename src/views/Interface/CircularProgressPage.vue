@@ -4,15 +4,14 @@
       <template v-slot:component>
         <circular-progress-component
           :rounded="computedRounded"
-          height="160px"
-          width="160px"
           :gradient="gradient"
           :variant="variant"
           :value="computedProgressValue"
           ref="circulatProgress"
-          :bordered="computedBordered"
+          :show-track="computedShowTrack"
           :bold="computedWeight"
           :size="computedSize"
+          :hide-value="computedHideValue"
         />
       </template>
       <template v-slot:contextual>
@@ -76,13 +75,13 @@
               />
             </td>
             <td class="divider"></td>
-            <td>bordered</td>
+            <td>showTrack</td>
             <td>
               <toggle-component
                 size="small"
                 variant="info"
-                :state="computedBordered"
-                @toggle="borderedChanged"
+                :state="computedShowTrack"
+                @toggle="showTrackChanged"
               />
             </td>
           </tr>
@@ -97,13 +96,24 @@
               />
             </td>
             <td class="divider"></td>
-            <td>fontSize</td>
+            <td>size</td>
             <td>
               <select-component
                 :state="computedSize"
                 @selected="sizeChanged"
                 :data="sizeOptions"
                 defaults="default"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>hideValue</td>
+            <td>
+              <toggle-component
+                size="small"
+                variant="info"
+                :state="computedHideValue"
+                @toggle="hideValueChanged"
               />
             </td>
           </tr>
@@ -148,14 +158,15 @@ export default {
     return {
       showContext: true,
       progressValue: 78,
-      size: "small",
+      size: "extra-large",
       bold: true,
       rounded: true,
+      hideValue: false,
       gradient: true,
-      bordered: false,
+      showTrack: false,
       variant: "",
       variantOptions: ["info", "success", "warning", "danger"],
-      sizeOptions: ["small", "medium", "large"],
+      sizeOptions: ["small", "medium", "large", "extra-large"],
       weightOptions: ["normal", "bold"],
       code: CircularProgressComponentMarkdown.default,
       propHeadings: ["Prop", "Type", "Example", "Required", "Description"],
@@ -173,6 +184,62 @@ export default {
           "true",
           "No",
           "Will round the top and bottom items giving it a rounded look",
+        ],
+        [
+          "variant",
+          "String",
+          "'' / info / success / warning / danger",
+          "No",
+          "Selects the color scheme of the component",
+        ],
+        [
+          "gradient",
+          "Boolean",
+          "true",
+          "No",
+          "Changes the color of the fill to a gradient",
+        ],
+        [
+          "value",
+          "Number",
+          "99",
+          "Yes",
+          "Determines the total fillness of the progress bar",
+        ],
+        [
+          "bold",
+          "Boolean",
+          "true",
+          "No",
+          "Sets the fontWeight css property of the percentage count",
+        ],
+        [
+          "hideValue",
+          "Boolean",
+          "false",
+          "No",
+          "Shows or hides the percentage count",
+        ],
+        [
+          "triggerAnimation()",
+          "Function",
+          "",
+          "Yes",
+          "Allows you to start the animation, call on mounted or when you want a specific event to trigger it",
+        ],
+        [
+          "showTrack",
+          "Boolean",
+          "true",
+          "No",
+          "Shows or hides the gradient track",
+        ],
+        [
+          "size",
+          "String",
+          "small / medium / large / extra-large",
+          "No",
+          "Sets the size of the component",
         ],
       ],
     };
@@ -202,11 +269,17 @@ export default {
     gradientChanged() {
       this.gradient = !this.gradient;
     },
-    borderedChanged() {
-      this.bordered = !this.bordered;
+    showTrackChanged() {
+      this.showTrack = !this.showTrack;
+    },
+    hideValueChanged() {
+      this.hideValue = !this.hideValue;
     },
   },
   computed: {
+    computedHideValue() {
+      return this.hideValue;
+    },
     computedProgressValue() {
       return this.progressValue;
     },
@@ -219,8 +292,8 @@ export default {
     computedGradient() {
       return this.gradient;
     },
-    computedBordered() {
-      return this.bordered;
+    computedShowTrack() {
+      return this.showTrack;
     },
     computedWeight() {
       return this.bold;
