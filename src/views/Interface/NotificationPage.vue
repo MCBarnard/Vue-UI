@@ -12,6 +12,11 @@
           :sub-text="computedSubTitle"
         ></notification-component>
       </template>
+      <template v-slot:contextual>
+        <div :class="['context', { showContext }]">
+          Click on the reset button to reload the notification...
+        </div>
+      </template>
       <template v-slot:controls>
         <table class="props-table">
           <tr>
@@ -90,6 +95,7 @@ export default {
   },
   data() {
     return {
+      showContext: false,
       key: 0,
       variant: "",
       icon: "",
@@ -143,8 +149,10 @@ export default {
       if (this.deleted) {
         this.key++;
         this.deleted = false;
+        this.showContext = false;
       } else {
         this.$refs.notifications.hideNotification();
+        this.showContext = true;
       }
     },
     handleAcknowledged() {
@@ -184,6 +192,16 @@ export default {
 <style scoped lang="scss">
 * {
   box-sizing: border-box;
+}
+
+.context {
+  transition: all 2s ease;
+  pointer-events: none;
+  opacity: 0;
+
+  &.showContext {
+    opacity: 1;
+  }
 }
 
 .notification-page {
