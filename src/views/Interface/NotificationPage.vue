@@ -32,9 +32,14 @@
             <td class="divider"></td>
             <td>hideNotification()</td>
             <td>
-              <button @click="acknowledgeNotification">
+              <vue-u-i-button-component
+                size="medium"
+                variant="info"
+                corners="rounded"
+                @click="acknowledgeNotification"
+              >
                 {{ notificationButtonText }}
-              </button>
+              </vue-u-i-button-component>
             </td>
           </tr>
           <tr>
@@ -82,6 +87,7 @@ import SelectComponent from "@/components/Controls/SelectComponent";
 import PrismComponent from "@/components/PrismComponent";
 import TableComponent from "@/components/TableComponent";
 import InputComponent from "@/components/Controls/InputComponent";
+import VueUIButtonComponent from "@/components/Vue-UI/ButtonComponent";
 import * as NotificationComponentMarkdown from "@/assets/ComponentMarkdown/NotificationComponentMarkdown";
 
 export default {
@@ -92,6 +98,7 @@ export default {
     NotificationComponent,
     SelectComponent,
     InputComponent,
+    VueUIButtonComponent,
   },
   data() {
     return {
