@@ -7,6 +7,7 @@ import TogglePage from "../views/Components/TogglePage.vue";
 import InputPage from "../views/Components/InputPage.vue";
 import TextAreaPage from "../views/Components/TextAreaPage.vue";
 import AccordionPage from "../views/Interface/AccordionPage.vue";
+import NotificationPage from "../views/Interface/NotificationPage.vue";
 import CircularProgressPage from "../views/Interface/CircularProgressPage";
 
 const routes = [
@@ -104,6 +105,17 @@ const routes = [
         meta: {
           subTitle: "Interface",
           cleanname: "Accordion Component",
+          intro:
+            "Accordion to the developers, they were harmonizing while building this component...",
+        },
+      },
+      {
+        path: "/ui-components/notification",
+        name: "notification",
+        component: NotificationPage,
+        meta: {
+          subTitle: "Interface",
+          cleanname: "Notification Component",
           intro:
             "Accordion to the developers, they were harmonizing while building this component...",
         },

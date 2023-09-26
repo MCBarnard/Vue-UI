@@ -12,7 +12,7 @@
             { active: $route.path.includes('/components') },
           ]"
         >
-          <a @click="toggleComponentsDropdown">Components</a>
+          <a @click="toggleComponentsDropdown">Basic Components</a>
           <div :class="['caret', { active: showComponentsDropdown }]">
             <span class="material-symbols-outlined">expand_more</span>
           </div>
@@ -82,6 +82,14 @@
                 :class="[{ active: $route.name === 'accordion' }]"
               >
                 Accordion
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                :to="{ name: 'notification' }"
+                :class="[{ active: $route.name === 'notification' }]"
+              >
+                Notification
               </router-link>
             </li>
             <li>
