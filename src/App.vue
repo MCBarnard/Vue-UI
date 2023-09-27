@@ -60,6 +60,14 @@
                 TextArea
               </router-link>
             </li>
+            <li>
+              <router-link
+                :to="{ name: 'dropdown' }"
+                :class="[{ active: $route.name === 'dropdown' }]"
+              >
+                Dropdown
+              </router-link>
+            </li>
           </ul>
         </li>
         <li

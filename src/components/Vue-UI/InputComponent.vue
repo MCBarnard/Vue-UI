@@ -140,6 +140,7 @@ $trans-04: all 0.4s ease;
     outline: none;
     background: $light-theme-background-color;
     box-sizing: border-box;
+    box-shadow: 0 0 5px -2px #d0d0d0;
 
     &:focus ~ label {
       color: $default-color;

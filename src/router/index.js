@@ -9,6 +9,7 @@ import TextAreaPage from "../views/Components/TextAreaPage.vue";
 import AccordionPage from "../views/Interface/AccordionPage.vue";
 import NotificationPage from "../views/Interface/NotificationPage.vue";
 import CircularProgressPage from "../views/Interface/CircularProgressPage";
+import DropDownPage from "../views/Components/DropDownPage";
 
 const routes = [
   {
@@ -92,6 +93,16 @@ const routes = [
             "Welcome to the thrill-filled world of text areas, where the only thing scarier than writer's block is running out of space.",
         },
       },
+      {
+        path: "/components/dropdown",
+        name: "dropdown",
+        component: DropDownPage,
+        meta: {
+          subTitle: "Components",
+          cleanname: "Dropdown Component",
+          intro: "We promise to take it to a whole new level.....",
+        },
+      },
     ],
   },
   {
@@ -117,7 +128,7 @@ const routes = [
           subTitle: "Interface",
           cleanname: "Notification Component",
           intro:
-            "Accordion to the developers, they were harmonizing while building this component...",
+            "When Life Gives You Lemons, We'll Make Sure You Know About It!",
         },
       },
       {
@@ -128,7 +139,7 @@ const routes = [
           subTitle: "Interface",
           cleanname: "Circular Progress Component",
           intro:
-            "I promise not to make a joke about progress bars... I'll wheelie try",
+            "We promise not to make a joke about progress bars... We'll wheelie try",
         },
       },
     ],
