@@ -14,6 +14,7 @@
           'material-symbols-outlined icon',
           { completed: item.completed },
           { active: item.active },
+          { hoverable },
         ]"
       >
         {{ item.icon }}
@@ -25,7 +26,7 @@
 
 <script>
 export default {
-  props: ["steps"], // [{icon: '', name: '', completed: false}]
+  props: ["steps", "hoverable"], // [{icon: '', name: '', completed: false}]
   computed: {
     stepsDivisions() {
       return 100 / (this.steps.length - 1);
@@ -90,10 +91,13 @@ $todo-color: #d2d2d2;
       justify-content: center;
       flex-direction: column;
       color: #d2d2d2;
-      cursor: pointer;
 
-      &:hover ~ p {
-        opacity: 1;
+      &.hoverable {
+        cursor: pointer;
+
+        &:hover ~ p {
+          opacity: 1;
+        }
       }
 
       &.completed {

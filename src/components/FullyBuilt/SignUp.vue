@@ -16,6 +16,7 @@
     </div>
     <div class="sign-up-component__progress" v-if="showStepper">
       <stepper-component
+        :hoverable="false"
         @manual-go-to="(item) => console.log(item.name)"
         :steps="computedSteps"
       />
@@ -241,12 +242,48 @@
             full
           />
         </div>
+        <div>
+          <input-component
+            @change="accountNumberChanged"
+            :value="stepThreeData.account_number"
+            :variant="accountNumberVariant"
+            :sub-text-color="
+              !computedAccountNumberValidation.hasErrors ? 'sub' : 'danger'
+            "
+            :sub-text="
+              !computedAccountNumberValidation.hasErrors
+                ? ''
+                : computedAccountNumberValidation.errorMessage
+            "
+            :show-sub-text="computedAccountNumberValidation.hasErrors"
+            label="Account Number"
+            full
+          />
+        </div>
+        <div>
+          <input-component
+            @change="accountHolderChanged"
+            :value="stepThreeData.account_holder"
+            :variant="accountHolderVariant"
+            :sub-text-color="
+              !computedAccountHolderValidation.hasErrors ? 'sub' : 'danger'
+            "
+            :sub-text="
+              !computedAccountHolderValidation.hasErrors
+                ? ''
+                : computedAccountHolderValidation.errorMessage
+            "
+            :show-sub-text="computedAccountHolderValidation.hasErrors"
+            label="Account Holder"
+            full
+          />
+        </div>
         <div class="sign-up-component__pages__three__submit">
           <button-component
             corners="round"
             variant="info"
             @click="handlePageThreeSubmit"
-            >Next</button-component
+            >Save Banking Details</button-component
           >
         </div>
       </div>
@@ -555,15 +592,26 @@ export default {
       this.stepTwo.locked = true;
     },
     handlePageThreeSubmit() {
-      // Validate the input fields
-      // if (
-      //   !this.validateUsername() ||
-      //   !this.validatePassword() ||
-      //   this.stepOneData.accountType === ""
-      // ) {
-      //   return;
-      // }
+      const errors = [];
+      const validations = [
+        this.validateBank,
+        this.validateBranchCode,
+        this.validateAccountNumber,
+        this.validateAccountHolder,
+      ];
+      validations.forEach((item) => {
+        const result = item();
+        if (!result) errors.push(item());
+      });
+
+      setTimeout(() => {
+        this.calculatePageHeight(this.activePage);
+      }, 200);
+      if (errors.length > 0) {
+        return;
+      }
       this.goToPage(4);
+      this.stepThree.locked = true;
     },
     handlePageFourSubmit() {
       // Validate the input fields
@@ -920,7 +968,7 @@ export default {
         {
           icon: "account_balance",
           name: "Banking & Payout Details",
-          completed: false,
+          completed: this.stepThreeDone,
           active: this.activePage === 3,
         },
         {
