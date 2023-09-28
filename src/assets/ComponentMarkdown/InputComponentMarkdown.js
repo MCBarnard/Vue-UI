@@ -5,7 +5,7 @@ export default `<template>
       'input-field',
       { 'full-width': full },
       { dark: dark },
-      { active: focussing },
+      { active: focussingInput },
       variant,
       { disabled: disabled },
     ]"
@@ -47,15 +47,23 @@ export default `<template>
 export default {
 data() {
   return {
+    manualFocus: false,
     dark: false, // true / false
   };
 },
 methods: {
   focusInput() {
+    this.manualFocus = true;
     this.$emit("focus");
   },
   blurInput() {
+    this.manualFocus = false;
     this.$emit("blur");
+  },
+},
+computed: {
+  focussingInput() {
+    return this.focussing || this.manualFocus;
   },
 },
 props: {
@@ -140,6 +148,7 @@ input {
   outline: none;
   background: $light-theme-background-color;
   box-sizing: border-box;
+  box-shadow: 0 0 5px -2px #d0d0d0;
 
   &:focus ~ label {
     color: $default-color;

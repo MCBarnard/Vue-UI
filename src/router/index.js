@@ -10,6 +10,7 @@ import AccordionPage from "../views/Interface/AccordionPage.vue";
 import NotificationPage from "../views/Interface/NotificationPage.vue";
 import CircularProgressPage from "../views/Interface/CircularProgressPage";
 import DropDownPage from "../views/Components/DropDownPage";
+import SignUp from "../components/FullyBuilt/SignUp";
 
 const routes = [
   {
@@ -46,7 +47,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Link Component",
           intro:
-            "We've designed quite possibly the most over engineered hyperlinks... Enjoy",
+            "We've designed, quite possibly, the most over engineered hyperlinks... Enjoy",
         },
       },
       {
@@ -57,7 +58,7 @@ const routes = [
           subTitle: "Components",
           cleanname: "Button Component",
           intro:
-            "Press Here for Button Brilliance (Disclaimer: No buttons were harmed in the making of this showcase, but their egos may have taken a hit!)",
+            "No buttons were harmed in the making of this showcase, but their egos may have taken a hit!",
         },
       },
       {
@@ -78,8 +79,7 @@ const routes = [
         meta: {
           subTitle: "Components",
           cleanname: "Input Component",
-          intro:
-            "Interacting with these inputs may result in sudden bouts of inspiration",
+          intro: "Don't be shy, this will literally ask for your input...",
         },
       },
       {
@@ -100,7 +100,7 @@ const routes = [
         meta: {
           subTitle: "Components",
           cleanname: "Dropdown Component",
-          intro: "We promise to take it to a whole new level.....",
+          intro: "We promise to take it to a whole new level...",
         },
       },
     ],
@@ -128,7 +128,7 @@ const routes = [
           subTitle: "Interface",
           cleanname: "Notification Component",
           intro:
-            "When Life Gives You Lemons, We'll Make Sure You Know About It!",
+            "When life gives you lemons, we'll make sure you know about it!",
         },
       },
       {
@@ -149,6 +149,22 @@ const routes = [
       intro:
         "The team that gets the dream going. We are a small team at the cusp of greatness",
     },
+  },
+  {
+    path: "/fully-built",
+    name: "fully-built",
+    children: [
+      {
+        path: "/fully-built/sign-up",
+        name: "fully-built-sign-up",
+        component: SignUp,
+        meta: {
+          subTitle: "Fully Built",
+          cleanname: "Sign Up",
+          intro: "Sign-Up Shenanigans: Join the Fun Side of the Internet! ",
+        },
+      },
+    ],
   },
 ];
 

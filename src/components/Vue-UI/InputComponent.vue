@@ -5,7 +5,7 @@
         'input-field',
         { 'full-width': full },
         { dark: dark },
-        { active: focussing },
+        { active: focussingInput },
         variant,
         { disabled: disabled },
       ]"
@@ -47,15 +47,23 @@
 export default {
   data() {
     return {
+      manualFocus: false,
       dark: false, // true / false
     };
   },
   methods: {
     focusInput() {
+      this.manualFocus = true;
       this.$emit("focus");
     },
     blurInput() {
+      this.manualFocus = false;
       this.$emit("blur");
+    },
+  },
+  computed: {
+    focussingInput() {
+      return this.focussing || this.manualFocus;
     },
   },
   props: {

@@ -171,7 +171,7 @@ $dark-warning-outlined-button-border: #e3a700;
   }
 
   &.round {
-    border-radius: 10px;
+    border-radius: 30px;
   }
 
   &.wide {

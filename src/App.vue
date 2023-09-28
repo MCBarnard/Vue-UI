@@ -111,6 +111,30 @@
           </ul>
         </li>
         <li
+          :class="[
+            'nav-list-item',
+            { active: $route.path.includes('/fully-built') },
+          ]"
+        >
+          <a @click="toggleReadyMadeComponentsDropdown">Fully Built</a>
+          <div :class="['caret', { active: showReadyMadeComponentsDropdown }]">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <ul
+            id="readyMadeComponentsDropdown"
+            :class="['sub-nav-list', { open: showReadyMadeComponentsDropdown }]"
+          >
+            <li>
+              <router-link
+                :to="{ name: 'fully-built-sign-up' }"
+                :class="[{ active: $route.name === 'fully-built-sign-up' }]"
+              >
+                Onboarding
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li
           :class="['nav-list-item', { active: $route.name === 'developers' }]"
         >
           <router-link :to="{ name: 'developers' }">The Developers</router-link>
@@ -143,6 +167,7 @@ export default {
     return {
       showComponentsDropdown: false,
       showUIComponentsDropdown: false,
+      showReadyMadeComponentsDropdown: false,
     };
   },
   computed: {
@@ -163,6 +188,7 @@ export default {
         dropdown.style.maxHeight = null;
       } else {
         this.closeToggle("uiComponentsDropdown");
+        this.closeToggle("readyMadeComponentsDropdown");
         dropdown.style.maxHeight = dropdown.scrollHeight + "px";
       }
       this.showComponentsDropdown = !this.showComponentsDropdown;
@@ -174,13 +200,29 @@ export default {
       } else {
         dropdown.style.maxHeight = dropdown.scrollHeight + "px";
         this.closeToggle("componentsDropdown");
+        this.closeToggle("readyMadeComponentsDropdown");
       }
       this.showUIComponentsDropdown = !this.showUIComponentsDropdown;
+    },
+    toggleReadyMadeComponentsDropdown() {
+      const dropdown = document.getElementById("readyMadeComponentsDropdown");
+      if (dropdown.style.maxHeight) {
+        dropdown.style.maxHeight = null;
+      } else {
+        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        this.closeToggle("componentsDropdown");
+        this.closeToggle("uiComponentsDropdown");
+      }
+      this.showReadyMadeComponentsDropdown =
+        !this.showReadyMadeComponentsDropdown;
     },
     closeToggle(id) {
       const dropdown = document.getElementById(id);
       if (dropdown.style.maxHeight) {
         dropdown.style.maxHeight = null;
+      }
+      if (id === "readyMadeComponentsDropdown") {
+        this.showReadyMadeComponentsDropdown = false;
       }
       if (id === "uiComponentsDropdown") {
         this.showUIComponentsDropdown = false;
